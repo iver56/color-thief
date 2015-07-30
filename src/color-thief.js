@@ -28,10 +28,21 @@ var CanvasImage = function (image) {
 
     document.body.appendChild(this.canvas);
 
-    this.width  = this.canvas.width  = image.width;
-    this.height = this.canvas.height = image.height;
+    this.width  = this.canvas.width  = image.width * 0.8;
+    this.height = this.canvas.height = image.height * 0.3;
 
-    this.context.drawImage(image, 0, 0, this.width, this.height);
+    // Select only a portion of the source image. Good for ignoring the background color around the main object
+    this.context.drawImage(
+        image,
+        image.width * 0.1,
+        image.height * 0.4,
+        this.width,
+        this.height,
+        0,
+        0,
+        this.width,
+        this.height
+    );
 };
 
 CanvasImage.prototype.clear = function () {
